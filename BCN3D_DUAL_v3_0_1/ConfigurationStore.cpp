@@ -39,7 +39,7 @@ void _EEPROM_readData(int &pos, uint8_t* value, uint8_t size)
 // the default values are used whenever there is a change to the data, to prevent
 // wrong data being written to the variables.
 // ALSO:  always make sure the variables in the Store and retrieve sections are in the same order.
-#define EEPROM_VERSION "V11"
+#define EEPROM_VERSION "V12"
 
 #ifdef EEPROM_SETTINGS
 void Config_StoreSettings() 
@@ -63,6 +63,10 @@ void Config_StoreSettings()
 	#ifdef HYSTERESIS_H
 	EEPROM_WRITE_VAR(i,menu_hysteresis_X);
 	EEPROM_WRITE_VAR(i,menu_hysteresis_Y);
+	#endif
+	#ifdef EN_EXTRUDER_OFFSET
+	EEPROM_WRITE_VAR(i,extruder_offset[X_AXIS][1]);
+	EEPROM_WRITE_VAR(i,extruder_offset[Y_AXIS][1]);
 	#endif
   #ifndef ULTIPANEL
   int plaPreheatHotendTemp = PLA_PREHEAT_HOTEND_TEMP, plaPreheatHPBTemp = PLA_PREHEAT_HPB_TEMP, plaPreheatFanSpeed = PLA_PREHEAT_FAN_SPEED;
@@ -209,6 +213,10 @@ void Config_RetrieveSettings()
 		EEPROM_READ_VAR(i,menu_hysteresis_X);
 		EEPROM_READ_VAR(i,menu_hysteresis_Y);
 		#endif
+		#ifdef EN_EXTRUDER_OFFSET
+		EEPROM_READ_VAR(i,extruder_offset[X_AXIS][1]);
+		EEPROM_READ_VAR(i,extruder_offset[Y_AXIS][1]);
+		#endif
         #ifndef ULTIPANEL
         int plaPreheatHotendTemp, plaPreheatHPBTemp, plaPreheatFanSpeed;
         int absPreheatHotendTemp, absPreheatHPBTemp, absPreheatFanSpeed;
@@ -284,6 +292,12 @@ void Config_ResetDefault()
 	menu_hysteresis_X=X_DEFAULT_HYSTERESIS_MM;
 	menu_hysteresis_Y=Y_DEFAULT_HYSTERESIS_MM;
 	#endif
+	//#ifdef EN_EXTRUDER_OFFSET
+	//extruder_offset = {EXTRUDER_OFFSET_X, EXTRUDER_OFFSET_Y};
+	//extruder_offset[X_AXIS][1]=EXTRUDER_OFFSET_X[1];
+	//extruder_offset[Y_AXIS][1]=EXTRUDER_OFFSET_Y[1];
+	//#endif
+			
 #ifdef ULTIPANEL
     plaPreheatHotendTemp = PLA_PREHEAT_HOTEND_TEMP;
     plaPreheatHPBTemp = PLA_PREHEAT_HPB_TEMP;

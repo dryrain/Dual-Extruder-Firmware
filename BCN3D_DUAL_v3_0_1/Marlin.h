@@ -211,4 +211,6 @@ extern unsigned long stoptime;
 // Handling multiple extruders pins
 extern uint8_t active_extruder;
 
+extern float extruder_offset[2][EXTRUDERS];
+
 #endif

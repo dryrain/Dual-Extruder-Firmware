@@ -80,6 +80,7 @@ static void lcd_sdcard_menu();
 static void lcd_hysteresis_menu();
 
 
+
 static void lcd_quick_feedback();//Cause an LCD refresh, and give the user visual or audiable feedback that something has happend
 
 /* Different types of actions that can be used in menuitems. */
@@ -867,8 +868,13 @@ static void lcd_control_motion_menu()
     START_MENU();
     MENU_ITEM(back, MSG_CONTROL, lcd_control_menu);
     MENU_ITEM_EDIT(float5, MSG_ACC, &acceleration, 500, 99000);
+	//Rapduch
 	#ifdef HYSTERESIS_H
 	MENU_ITEM(submenu, MSG_HYSTERESIS,lcd_hysteresis_menu);
+	#endif
+	#ifdef EN_EXTRUDER_OFFSET //Sets the extruders X offset
+	MENU_ITEM_EDIT(float52,MSG_EXTRUDER_OFFSET_X,&extruder_offset[X_AXIS][1],0,200);
+	MENU_ITEM_EDIT(float52,MSG_EXTRUDER_OFFSET_Y,&extruder_offset[Y_AXIS][1],0,200);
 	#endif
     MENU_ITEM_EDIT(float3, MSG_VXY_JERK, &max_xy_jerk, 1, 990);
     MENU_ITEM_EDIT(float52, MSG_VZ_JERK, &max_z_jerk, 0.1, 990);

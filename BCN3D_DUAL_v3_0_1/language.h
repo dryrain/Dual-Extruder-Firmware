@@ -86,6 +86,9 @@
 	#define MSG_HYST_OFF "Disable"
 	#define MSG_HYST_MANUAL_X "Manual X"
 	#define MSG_HYST_MANUAL_Y "Manual Y"
+	#define MSG_EXTRUDER_OFFSET_X "OffsetX"
+	#define MSG_EXTRUDER_OFFSET_Y "OffsetY"
+
 	//----
 	#define MSG_BED "Bed"
 	#define MSG_FAN_SPEED "Fan speed"
